@@ -26,6 +26,7 @@ API_NAME = 'drive'
 API_VERSION = 'v3'
 SCOPES = ['https://www.googleapis.com/auth/drive']
 file_id = '1mtrbGpd94c51ZjwLZNGfv7kaTcAw5JtD'
+dev = 'Laptop'
 
 # Constants for file location
 local_file = "updated_log.txt"
@@ -218,7 +219,7 @@ t = np.arange(0,total_windows-1,1)
 # Log the attack to database if detected
 if flag == 1:
     timestamp = UTC_check()
-    attack_msg = f'Forgery attack detected | Type: Video | Timestamp: UTC {timestamp} | Device: Laptop'
+    attack_msg = f'Forgery attack detected | Type: Audio | Timestamp: UTC {timestamp} | Device: {str(dev)}'
     log_attack(attack_msg)
 
 # Plot ENF results
