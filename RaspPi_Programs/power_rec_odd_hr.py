@@ -6,7 +6,7 @@ import soundfile as sf
 import sys
 import os
 
-folder_audio = "Power_Recordings/"
+folder_audio = "/home/pi/Desktop/Power_Recordings/"
 
 def power_rec(fs, duration, path): #buffer audio
     print(f"Enter recording: {duration} seconds")

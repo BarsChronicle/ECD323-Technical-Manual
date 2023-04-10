@@ -11,12 +11,12 @@ import pandas as pd
 import shutil
 
 # Constants for file locations
-folder_archive = 'Archived_Recordings/'
-folder_audio = 'Power_Recordings/'
-folder_enf = 'ENF_Data/'
+folder_archive = '/home/pi/Desktop/Archived_Recordings/'
+folder_audio = '/home/pi/Desktop/Power_Recordings/'
+folder_enf = '/home/pi/Desktop/ENF_Data/'
 
-## Create google drive service instance
-CLIENT_SECRET_FILE = 'credentials.json'
+# Create google drive service instance
+CLIENT_SECRET_FILE = '/home/pi/Desktop/pyenf_extraction/Power_Rec_Feature/credentials.json'
 API_NAME = 'drive'
 API_VERSION = 'v3'
 SCOPES = ['https://www.googleapis.com/auth/drive']
