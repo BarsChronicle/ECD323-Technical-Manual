@@ -19,6 +19,7 @@ from io import StringIO
 from skimage.util import img_as_float
 from skimage.segmentation import slic
 from scipy.stats.stats import pearsonr
+import argparse
 
 # Create google drive service instance
 CLIENT_SECRET_FILE = 'credentials.json'
@@ -28,10 +29,23 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 file_id = '1mtrbGpd94c51ZjwLZNGfv7kaTcAw5JtD'
 dev = 'Laptop'
 
+# Prompts for file selection
+parser = argparse.ArgumentParser(description='ENF Estimation from Audio Recordings')
+
+parser.add_argument("--file","-f", help="Input media recording filepath.", type=str)
+
+args = parser.parse_args()
+
+print("Processing " + args.file + " recording")
+
+if args.file == 'tampered':
+    audiofile = "tampered_recording.wav"
+else:
+    audiofile = "audio_recording.wav"
+
 # Constants for file location
 local_file = "updated_log.txt"
 folder = "Audio_Recording/"
-audiofile = "tampered_recording.wav"
 powerfile = "power_recording.wav"
 
 audio_filepath = folder + audiofile

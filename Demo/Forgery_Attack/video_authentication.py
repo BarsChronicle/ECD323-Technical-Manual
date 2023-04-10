@@ -19,6 +19,7 @@ from io import StringIO
 from skimage.util import img_as_float
 from skimage.segmentation import slic
 from scipy.stats.stats import pearsonr
+import argparse
 
 # Create google drive service instance
 CLIENT_SECRET_FILE = 'credentials.json'
@@ -28,10 +29,23 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 file_id = '1mtrbGpd94c51ZjwLZNGfv7kaTcAw5JtD'
 dev = 'Laptop'
 
+# Prompts for file selection
+parser = argparse.ArgumentParser(description='ENF Estimation from Video Recordings')
+
+parser.add_argument("--file","-f", help="Input media recording filepath.", type=str)
+
+args = parser.parse_args()
+
+print("Processing " + args.file + " recording")
+
+if args.file == 'tampered':
+    videofile = "tampered_video.mp4"
+else:
+    videofile = "original_video.mp4"
+
 # Constants for file location
 local_file = "updated_log.txt"
 folder = "Video_Recording/"
-videofile = "short_attack_video.mp4"
 powerfile = "power_recording.wav"
 
 video_filepath = folder + videofile
@@ -209,7 +223,7 @@ video_enf = estimate_ENF(video_rec, video_nominal, 2, video_dur)
 power_enf = estimate_ENF(power_rec, power_nominal, 1, power_dur)
 
 # Correlation Coefficient Analysis
-window_size = 50
+window_size = 40
 shift_size = 1
 
 print('Performing correlation coefficient . . .')
@@ -219,7 +233,7 @@ t = np.arange(0,total_windows-1,1)
 # Log the attack to database if detected
 if flag == 1:
     timestamp = UTC_check()
-    attack_msg = f'Forgery attack detected | Type: Audio | Timestamp: UTC {timestamp} | Device: {str(dev)}'
+    attack_msg = f'Forgery attack detected | Type: Video | Timestamp: UTC {timestamp} | Device: {str(dev)}'
     log_attack(attack_msg)
 
 # Plot ENF results
