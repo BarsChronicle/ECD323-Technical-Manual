@@ -172,7 +172,7 @@ def cleanup():
             remove_file(filepath)
 
 def main():
-    dur_minute = 15
+    dur_minute = 60
     duration = (60*dur_minute) 
 
     while(True):
